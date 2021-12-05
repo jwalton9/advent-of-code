@@ -1,6 +1,7 @@
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 fn main() {
     let day = std::env::args().nth(1).expect("No day given");
@@ -9,6 +10,7 @@ fn main() {
         "day1" => day1::main(),
         "day2" => day2::main(),
         "day3" => day3::main(),
+        "day4" => day4::main(),
         _ => panic!("Day not found"),
     }
     .unwrap();
