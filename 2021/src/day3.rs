@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
@@ -65,7 +64,7 @@ fn calculate_bit_mask(
     return bit_mask[0].to_string();
 }
 
-pub fn main() -> Result<(), Box<dyn Error>> {
+pub fn main() -> () {
     let reader = BufReader::new(File::open("src/data/day3.csv").expect("Cannot open file"));
 
     let values: Vec<String> = reader.lines().map(|line| line.unwrap()).collect();
@@ -92,6 +91,4 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         * u32::from_str_radix(&co2_generator, 2).unwrap();
 
     println!("Part two: {}", life_support);
-
-    return Ok(());
 }

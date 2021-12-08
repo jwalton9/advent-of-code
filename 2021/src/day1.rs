@@ -1,9 +1,9 @@
 use std::collections::HashMap;
-use std::error::Error;
+
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-pub fn main() -> Result<(), Box<dyn Error>> {
+pub fn main() -> () {
     let reader = BufReader::new(File::open("src/data/day1.csv").expect("Cannot open file"));
 
     let mut increases = 0;
@@ -13,7 +13,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
     let mut window_increases = 0;
 
     for (i, line) in reader.lines().enumerate() {
-        let value = line?.parse()?;
+        let value = line.unwrap().parse().unwrap();
 
         if (last_seen > 0) & (value > last_seen) {
             increases += 1
@@ -41,6 +41,4 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     println!("Number of increases: {}", increases);
     println!("Number of window increases: {}", window_increases);
-
-    Ok(())
 }

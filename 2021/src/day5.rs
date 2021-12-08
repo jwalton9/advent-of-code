@@ -1,13 +1,12 @@
 use std::{
     cmp,
-    error::Error,
     fs::File,
     io::{BufRead, BufReader},
 };
 
 type Coordinate = (usize, usize);
 
-pub fn main() -> Result<(), Box<dyn Error>> {
+pub fn main() -> () {
     let reader = BufReader::new(File::open("./src/data/day5.txt").expect("Failed to open file"));
 
     let mut line_defs: Vec<(Coordinate, Coordinate)> = Vec::new();
@@ -17,7 +16,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
     for line in reader.lines() {
         let mut line_def: Vec<Coordinate> = Vec::new();
 
-        for coords in line?.split(" -> ") {
+        for coords in line.unwrap().split(" -> ") {
             let string_coords: Vec<&str> = coords.split(",").collect();
 
             let x = usize::from_str_radix(string_coords[0], 10).unwrap();
@@ -72,6 +71,4 @@ pub fn main() -> Result<(), Box<dyn Error>> {
     }
 
     println!("Part one: {}", sum);
-
-    Ok(())
 }

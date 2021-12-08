@@ -1,4 +1,4 @@
-use std::{collections::HashSet, error::Error, fs};
+use std::{collections::HashSet, fs};
 
 type Card = Vec<Vec<(u32, bool)>>;
 
@@ -124,8 +124,8 @@ fn get_card_value((x, card): (u32, Card)) -> u32 {
     return sum * x;
 }
 
-pub fn main() -> Result<(), Box<dyn Error>> {
-    let text = fs::read_to_string("./src/data/day4.txt")?;
+pub fn main() -> () {
+    let text = fs::read_to_string("./src/data/day4.txt").unwrap();
 
     let (numbers, cards) = parse_input(text);
 
@@ -139,6 +139,4 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         println!("{:?}", value);
         println!("Part two: {}", get_card_value(value));
     }
-
-    Ok(())
 }
